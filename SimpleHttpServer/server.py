@@ -2,7 +2,7 @@ from http.server import HTTPServer,BaseHTTPRequestHandler,HTTPStatus
 import json
 
 data = {'Hanyuu':'Mugi'}
-host = ('localhost',8888)
+host = ('localhost',8000)
 
 page ='''
 <html>
@@ -26,8 +26,6 @@ class Request(BaseHTTPRequestHandler):
 		self.send_header('Content-type','text')
 		self.end_headers()
 		s=str(self.rfile.readline(),'UTF-8')
-
-		# print(s)
 		self.wfile.write("Hanyuu".encode())
 
 if __name__=='__main__':
