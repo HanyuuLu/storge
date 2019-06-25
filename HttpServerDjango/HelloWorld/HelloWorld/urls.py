@@ -23,7 +23,8 @@ from . import search
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', view.response),
-    url('hello/', view.hello),
-    url('search$', search.search),
-    url('search-form$', search.search_form)
+    url('^hello/', view.hello),
+    url('^search$', search.search),
+    url('^search-form$', search.search_form),
+    url('^search-post$',search.search_post)
 ]
