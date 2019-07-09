@@ -25,15 +25,19 @@ function App() {
     </div>
   );
 }
+class Clock extends React.Component{
+  render(){
+    return(
+      <div>
+      <h2>现在是 {this.props.date.toLocaleTimeString()}.</h2>
+    </div>
+    )
+  }
+}
 function tick()
 {
-  const element = (
-    <div>
-      <h2>现在是 {new Date().toLocaleTimeString()}.</h2>
-    </div>
-  );
   ReactDOM.render(
-    element,
+    <Clock date={new Date()}/>,
     document.getElementById('example')
   );
 }
