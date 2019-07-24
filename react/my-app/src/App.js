@@ -21,9 +21,14 @@ function App() {
         >
           Hanyuu Furude's personal web page.
         </a>
+        <button onClick={hanyuu}>hanyuu</button>
       </header>
     </div>
   );
+}
+function hanyuu()
+{
+  return console.log("Hanyuu."+new Date().toLocaleTimeString());
 }
 class Clock extends React.Component{
   render(){
