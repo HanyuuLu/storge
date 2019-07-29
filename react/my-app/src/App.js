@@ -4,11 +4,12 @@ import logo from './logo.svg';
 import './App.css';
 import { SSL_OP_NO_TICKET } from 'constants';
 
-function App() {
+function App()
+{
   return (
     <div className="App">
       <header className="App-header">
-        <h1 id = "title">Hanyuu's demo</h1>
+        <h1 id="title">Hanyuu's demo</h1>
         <img src={logo} className="App-logo" alt="logo" />
         <p id="example">
           Edit <code>src/App.js</code> and save to reload.
@@ -21,24 +22,27 @@ function App() {
         >
           Hanyuu Furude's personal web page.
         </a>
-        input box<input id = 'input' type= "text"/>
+        input box<input id='input' type="text" />
         <button onClick={hanyuu}>hanyuu</button>
-        <Toggle/>
+        <Toggle />
+        <Popper/>
       </header>
     </div>
   );
 }
 function hanyuu()
 {
-  ReactDOM.render(<Counter/>,document.getElementById("title"));
-  return console.log("Hanyuu."+new Date().toLocaleTimeString());
+  ReactDOM.render(<Counter />, document.getElementById("title"));
+  return console.log("Hanyuu." + new Date().toLocaleTimeString());
 }
-class Clock extends React.Component{
-  render(){
-    return(
+class Clock extends React.Component
+{
+  render()
+  {
+    return (
       <div>
-      <h2>date: {this.props.date.toLocaleTimeString()}.</h2>
-    </div>
+        <h2>date: {this.props.date.toLocaleTimeString()}.</h2>
+      </div>
     )
   }
 }
@@ -87,9 +91,32 @@ class Toggle extends React.Component
 function tick()
 {
   ReactDOM.render(
-    <Clock date={new Date()}/>,
+    <Clock date={new Date()} />,
     document.getElementById('example')
   );
 }
-setInterval(tick,1000);
+setInterval(tick, 1000);
+class Popper extends React.Component
+{
+  constructor()
+  {
+    super();
+    this.state = { name: 'Hello world!' };
+  }
+  preventPop(name, e)
+  {
+    e.preventDefault();
+    alert(name);
+
+  }
+  render()
+  {
+    return (
+      <div>
+        <a href="https://reactjs.org" onClick={this.preventPop.bind(this, this.state.name)}>Click</a>
+
+      </div>
+    )
+  }
+}
 export default App;
