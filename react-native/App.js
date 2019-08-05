@@ -24,19 +24,102 @@
 //   ReloadInstructions,
 // } from 'react-native/Libraries/NewAppScreen';
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image,AppRegistry,StyleSheet  } from 'react-native';
+// import { booleanLiteral } from '@babel/types';
 
-export default class HelloWorldApp extends Component
+class TextBox extends Component
 {
   render()
   {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Hanyuu's demo</Text>
+      <View style={{ alignItems: "center", marginTop: 50 }}>
+        <Text style={styles.black}>Msg:{this.props.text}</Text>
+      </View>
+    )
+  }
+}
+class Blink extends Component
+{
+  constructor(props)
+  {
+    super(props);
+    this.state = { isShowingText: true };
+
+    // 每1000毫秒对showText状态做一次取反操作
+    setInterval(() =>
+    {
+      this.setState(previousState =>
+      {
+        return { isShowingText: !previousState.isShowingText };
+      });
+    }, 1000);
+  }
+
+  render()
+  {
+    // 根据当前showText的值决定是否显示text内容
+    if (!this.state.isShowingText)
+    {
+      return null;
+    }
+
+    return (
+      <Text style={styles.hc}>{this.props.text}</Text>
+    );
+  }
+}
+
+class BlinkApp extends Component
+{
+  render()
+  {
+    return (
+      <View style={{flex:1, backgroundColor:'skyblue'}}>
+        <Blink text='I love to blink' />
+        <Blink text='Yes blinking is so great' />
+        <Blink text='Why did they ever take this out of HTML' />
+        <Blink text='Look at me look at me look at me' />
       </View>
     );
   }
 }
+export default class Hanyuu extends Component
+// class Hanyuu extends Component
+{
+  render()
+  {
+    let pic = {
+      // url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+      url: 'https://cn.bing.com/th?id=OIP.-UsS9De1IkPRXpi0EJ4lsQHaFj&pid=Api&rs=1.jpg'
+    };
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" ,backgroundColor:"powderblue"}}>
+        <Text style={styles.blue}>Hanyuu desu</Text>
+        <Image source={pic} style={{ width: 200, height: 200 }} />
+        <Text>line</Text>
+        <TextBox text="Hanyuu" />
+        <BlinkApp/>
+      </View>
+
+    );
+  }
+}
+const styles = StyleSheet.create({
+  cyan: {
+    color: 'cyan',
+    fontSize: 30,
+  },
+  blue: {
+    color: 'blue',
+    fontSize:30,
+  },
+  black:
+  {
+    fontSize: 40,
+  },
+  hc:
+  {fontSize:25}
+});
 
 // const App = () => {
 //   return (
