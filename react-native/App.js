@@ -24,7 +24,8 @@
 //   ReloadInstructions,
 // } from 'react-native/Libraries/NewAppScreen';
 import React, { Component } from 'react';
-import { Text, View, Image,AppRegistry,StyleSheet  } from 'react-native';
+import { Text, View, Image,AppRegistry,StyleSheet,TextInput  } from 'react-native';
+import { validate } from '@babel/types';
 // import { booleanLiteral } from '@babel/types';
 
 class TextBox extends Component
@@ -74,11 +75,11 @@ class BlinkApp extends Component
   render()
   {
     return (
-      <View style={{flex:1, backgroundColor:'skyblue'}}>
+      <View style={{flex:1, backgroundColor:'skyblue',flexDirection:'column',justifyContent:'space-around',alignItems:'center'}}>
         <Blink text='I love to blink' />
-        <Blink text='Yes blinking is so great' />
+        {/* <Blink text='Yes blinking is so great' />
         <Blink text='Why did they ever take this out of HTML' />
-        <Blink text='Look at me look at me look at me' />
+        <Blink text='Look at me look at me look at me' /> */}
       </View>
     );
   }
@@ -86,6 +87,11 @@ class BlinkApp extends Component
 export default class Hanyuu extends Component
 // class Hanyuu extends Component
 {
+  constructor(props)
+  {
+    super(props);
+    this.state = { text: 'Placeholder' };
+  }
   render()
   {
     let pic = {
@@ -93,11 +99,13 @@ export default class Hanyuu extends Component
       url: 'https://cn.bing.com/th?id=OIP.-UsS9De1IkPRXpi0EJ4lsQHaFj&pid=Api&rs=1.jpg'
     };
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" ,backgroundColor:"powderblue"}}>
+      <View style={{ flex: 1,  alignItems: "center" ,backgroundColor:"powderblue"}}>
         <Text style={styles.blue}>Hanyuu desu</Text>
         <Image source={pic} style={{ width: 200, height: 200 }} />
         <Text>line</Text>
         <TextBox text="Hanyuu" />
+        <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} onChangeText={(text) => this.setState({ text })} value={this.state.text} />
+        <Text style={styles.black}>{this.state.text}</Text>
         <BlinkApp/>
       </View>
 
