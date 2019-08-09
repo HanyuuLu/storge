@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 
-import { Image, FlatList, StyleSheet, Text, View } from "react-native";
+import { Image, FlatList, StyleSheet, Text, View, Alert } from "react-native";
 
 var REQUEST_URL =
     "https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesExample.json";
@@ -36,6 +36,7 @@ export default class SampleAppMovies extends Component
                     data: this.state.data.concat(responseData.movies),
                     loaded: true
                 });
+                Alert.alert(String(responseData.total))
             });
     }
 
