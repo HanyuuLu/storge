@@ -14,7 +14,7 @@
             "type": "node",
             "request": "launch",
             "name": "Service",
-            "program": "${workspaceFolder}\\app\\app.js"
+            "program": "${workspaceFolder}\\src\\app.js"
         }
     ]
 }
