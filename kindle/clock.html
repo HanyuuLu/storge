@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>　</title>
+
+    <style>
+        body {
+            color: #000000;
+            background-color: #ffffff;
+        }
+
+        .page {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        .time_container,
+        .date_container {
+            width: 100%;
+            margin: auto;
+            /* text-align: center; */
+        }
+        .timedate_container
+        {
+            margin-left: 20%;
+        }
+
+        .time {
+            font-size: 54pt;
+        }
+
+        .date {
+            padding-top: 40px;
+            font-size: 24pt;
+        }
+        .emoji
+        {
+            text-align: center;
+            font-size: 72pt;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="timedate_container">
+            <div class="date" id="date">1月10日</div>
+            <div class="time" id="time">11:27</div>
+        </div>
+        <div class="emoji">○ △ ○</div>
+    </div>
+
+    <script>
+        function update() {
+            var date = new Date()
+            var utc8DiffMinutes = date.getTimezoneOffset() + 480
+            date.setMinutes(date.getMinutes() + utc8DiffMinutes)
+            var weekList = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thur.', 'Fri.', 'Sat.']
+            var timeString = twoWidth(date.getHours()) + ' : ' + twoWidth(date.getMinutes())
+            var dateString = date.getFullYear() + ' / ' + twoWidth(date.getMonth()) + ' / ' + twoWidth(date.getDate()) + '  ' + weekList[date.getDay()]
+
+            var weekString = weekList[date.getDay()]
+
+            document.getElementById("time").innerHTML = timeString
+            document.getElementById("date").innerHTML = dateString
+        }
+        function twoWidth(src) {
+            return ('0' + src).slice(-2);
+        }
+
+        update()
+        setInterval("update()", 60000)
+    </script>
+</body>
+
+</html>
