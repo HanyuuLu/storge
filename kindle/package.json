@@ -1,0 +1,21 @@
+{
+  "name": "kindle",
+  "version": "1.0.0",
+  "description": "kindle server",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "HanyuuLu",
+  "license": "ISC",
+  "keywords": [],
+  "devDependencies": {
+    "@types/koa": "^2.11.1",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "koa": "^2.11.0"
+  }
+}
