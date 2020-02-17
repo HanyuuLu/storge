@@ -12,10 +12,18 @@
   "keywords": [],
   "devDependencies": {
     "@types/koa": "^2.11.1",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-router": "^7.4.0",
+    "@types/request": "^2.48.4",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "koa": "^2.11.0"
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^8.0.8",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
   }
 }
