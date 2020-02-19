@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input id="commit" type="button" value="提交" title="提交" onclick="commit()">
+        <table>
+            <tr>
+                <td>年级</td>
+                <td><input id="grade" type="text"></td>
+            </tr>
+            <tr>
+                <td>单元</td>
+                <td><input id="unit" type="text"></td>
+            </tr>
+            <tr>
+                <td>课文号</td>
+                <td><input id="index" type="text"></td>
+            </tr>
+            <tr>
+                <td>子课文号</td>
+                <td><input id="subIndex" type="text"></td>
+            </tr>
+            <tr>
+                <td>作者</td>
+                <td><input id="author" type="text"></td>
+            </tr>
+            <tr>
+                <td>正文</td>
+                <td><input id="body" type="text"></td>
+            </tr>
+            <tr>
+                <td>注释</td>
+                <td>
+                    <table id="noteTable">
+                        <!-- <tr id="0">
+                            <td>0</td>
+                            <td><input type="text"></td>
+                            <td><input type="button" value="❌" onclick="deleteRow(0)"></td>
+                        </tr> -->
+                    </table>
+                    <input id = "addNote" type="button" onclick="addNote()" value="➕">
+
+                </td>
+            </tr>
+            <tr>
+                <td>输出</td>
+                <td><input type="button" value="复制到剪切板" onclick="copy()" ><input id="output" type="text"></td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+
+<script>
+    var countOfnote = 0;
+    var tableParent;
+    function commit() {
+        var res = {};
+        res.grade = document.getElementById("grade").value;
+        res.unit = document.getElementById("unit").value;
+        res.index = document.getElementById("index").value;
+        res.subIndex = document.getElementById("subIndex").value;
+        res.author = document.getElementById("author").value;
+        res.body = document.getElementById("body").value;
+        var arr = new Array()
+        var noteTable = document.getElementById("noteTable")
+        for(var i=0,rows = noteTable.rows.length;i<rows;i++)
+        {
+            arr[`${noteTable.rows[i].id}`] =  noteTable.rows[i].cells[1].firstElementChild.value
+        }
+        res.node = arr
+
+        document.getElementById("output").value = JSON.stringify(res)
+        alert($('.output'))
+    }
+    function addNote()
+    {
+        countOfnote = countOfnote+1
+        var newRow = document.createElement(`tr`)
+        newRow.id = countOfnote;
+        var tdIndex = document.createElement('td')
+        tdIndex.append(countOfnote)
+        newRow.appendChild(tdIndex)
+        tdIndex = document.createElement('td')
+        var inputbox =document.createElement('input')
+        inputbox.type ='input'
+        tdIndex.appendChild(inputbox)
+        newRow.append(tdIndex)
+        tdIndex = document.createElement('td')
+        var deleteButton = document.createElement('input')
+        deleteButton.type = 'button'
+        deleteButton.value = '❌'
+        deleteButton.addEventListener("click",function(){deleteRow(this)})
+        tdIndex.appendChild(deleteButton)
+        newRow.appendChild(tdIndex)
+
+        document.getElementById('noteTable').appendChild(newRow);
+        if(tableParent==null)
+        {tableParent = document.getElementById(countOfnote).parentElement}
+    }
+    function deleteRow(i)
+    {
+        var deleteNode = i.parentElement.parentElement
+        tableParent.removeChild(deleteNode)
+    }
+    function copy()
+    {
+        var res = document.getElementById("output")
+        res.select()
+        document.execCommand("Copy")
+        alert("输出已复制到剪切板")
+    }
+</script>
+
+</html>
