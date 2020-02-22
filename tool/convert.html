@@ -6,34 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <body>
+    <h1>
+        文本格式化转换器
+    </h1>
     <div>
-        <input id="commit" type="button" value="提交" title="提交" onclick="commit()">
-        <table>
+        <table class="form-group">
             <tr>
-                <td>年级</td>
-                <td><input id="grade" type="text"></td>
+                <div class="input-group flex-nowrap">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">年级</span>
+                    </div>
+                    <input class="form-control" id="grade" type="text">
+                </div>
             </tr>
             <tr>
                 <td>单元</td>
-                <td><input id="unit" type="text"></td>
+                <td><input class="form-control" id="unit" type="text"></td>
             </tr>
             <tr>
                 <td>课文号</td>
-                <td><input id="index" type="text"></td>
+                <td><input class="form-control" id="index" type="text"></td>
             </tr>
             <tr>
                 <td>子课文号</td>
-                <td><input id="subIndex" type="text"></td>
+                <td><input class="form-control" id="subIndex" type="text"></td>
             </tr>
             <tr>
                 <td>作者</td>
-                <td><input id="author" type="text"></td>
+                <td><input class="form-control" id="author" type="text"></td>
             </tr>
             <tr>
                 <td>正文</td>
-                <td><input id="body" type="text"></td>
+                <td><textarea class="form-control" id="body" type="text"></textarea></td>
             </tr>
             <tr>
                 <td>注释</td>
@@ -45,22 +53,34 @@
                             <td><input type="button" value="❌" onclick="deleteRow(0)"></td>
                         </tr> -->
                     </table>
-                    <input id = "addNote" type="button" onclick="addNote()" value="➕">
+                    <input id="addNote" type="button" class="btn btn-outline-primary btn-sm" onclick="addNote()"
+                        value="➕">
 
                 </td>
             </tr>
             <tr>
                 <td>输出</td>
-                <td><input type="button" value="复制到剪切板" onclick="copy()" ><input id="output" type="text"></td>
+                <td>
+                    <input class="form-control" id="output" type="text">
+                </td>
+                <td>
+                    <input type="button" class="btn btn-outline-primary" value="复制到剪切板" onclick="copy()">
+                </td>
             </tr>
         </table>
 
+        <input id="commit" class="btn btn-primary btn-block" type="button" value="提交" title="提交" onclick="commit()">
     </div>
 </body>
 
 <script>
     var countOfnote = 0;
     var tableParent;
+    init()
+    function init()
+    {
+        alert("正在施工中，样式未修改完全，但功能可用。")
+    }
     function commit() {
         var res = {};
         res.grade = document.getElementById("grade").value;
@@ -71,47 +91,44 @@
         res.body = document.getElementById("body").value;
         var arr = new Array()
         var noteTable = document.getElementById("noteTable")
-        for(var i=0,rows = noteTable.rows.length;i<rows;i++)
-        {
-            arr[`${noteTable.rows[i].id}`] =  noteTable.rows[i].cells[1].firstElementChild.value
+        for (var i = 0, rows = noteTable.rows.length; i < rows; i++) {
+            arr[`${noteTable.rows[i].id}`] = noteTable.rows[i].cells[1].firstElementChild.value
         }
         res.node = arr
 
         document.getElementById("output").value = JSON.stringify(res)
         alert($('.output'))
     }
-    function addNote()
-    {
-        countOfnote = countOfnote+1
+    function addNote() {
+        countOfnote = countOfnote + 1
         var newRow = document.createElement(`tr`)
         newRow.id = countOfnote;
         var tdIndex = document.createElement('td')
         tdIndex.append(countOfnote)
         newRow.appendChild(tdIndex)
         tdIndex = document.createElement('td')
-        var inputbox =document.createElement('input')
-        inputbox.type ='input'
+        var inputbox = document.createElement('input')
+        inputbox.type = 'input'
+        inputbox.classList = "form-control"
         tdIndex.appendChild(inputbox)
         newRow.append(tdIndex)
         tdIndex = document.createElement('td')
         var deleteButton = document.createElement('input')
         deleteButton.type = 'button'
         deleteButton.value = '❌'
-        deleteButton.addEventListener("click",function(){deleteRow(this)})
+        deleteButton.classList = "btn btn-outline-primary btn-sm"
+        deleteButton.addEventListener("click", function () { deleteRow(this) })
         tdIndex.appendChild(deleteButton)
         newRow.appendChild(tdIndex)
 
         document.getElementById('noteTable').appendChild(newRow);
-        if(tableParent==null)
-        {tableParent = document.getElementById(countOfnote).parentElement}
+        if (tableParent == null) { tableParent = document.getElementById(countOfnote).parentElement }
     }
-    function deleteRow(i)
-    {
+    function deleteRow(i) {
         var deleteNode = i.parentElement.parentElement
         tableParent.removeChild(deleteNode)
     }
-    function copy()
-    {
+    function copy() {
         var res = document.getElementById("output")
         res.select()
         document.execCommand("Copy")
