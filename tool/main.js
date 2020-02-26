@@ -5,16 +5,12 @@ var OutputField = { "output": "输出" }
 var NoteList = {}
 init()
 function init() {
-    alert("正在施工中，功能暂时不可用，请勿导出")
+    // alert("正在施工中，功能暂时不可用，请勿导出")
     var mountHandle = document.getElementById('mainTable')
     for (var key in Field) {
         createLabeledTextBox(mountHandle, key, Field[key])
     }
     var noteTr = document.createElement('tr')
-    // var leftTd = document.createElement('td')
-    // var leftBox = document.createElement('div')
-    // leftBox.innerHTML="注释"
-    // leftBox.classList = "label label-default"
     var rightTd = document.createElement('td')
     var rightTable = document.createElement('table')
     rightTable.id='noteTable'
@@ -56,6 +52,7 @@ function createLabeledTextBox(parent, key, value) {
     sp.style = "width:100px"
     sp.innerHTML = value
     var rightBox = document.createElement('input')
+    if(key=='body'){rightBox = document.createElement('textarea'); rightBox.style="height:150pt"}
     rightBox.classList = "form-control"
     rightBox.id = key
     rightBox.type = "text"
@@ -75,12 +72,11 @@ function commit() {
     var arr = {}
     for(var i in NoteList)
     {
-        arr[i]=document.getElementById(i).value
+        arr[i]=document.getElementById(NoteList[i]).value
     }
     res.node = arr
 
     document.getElementById("output").value = JSON.stringify(res)
-    alert($('.output'))
 }
 function addNote() {
     var parent = document.getElementById('noteTable')
@@ -92,7 +88,7 @@ function addNote() {
     deleteButton.id = countOfnote
     deleteButton.addEventListener('click', function () { deleteRow(this) })
     handle.lastChild.appendChild(deleteButton)
-    NoteList[`N${countOfnote}`]=`注释 ${countOfnote}`
+    NoteList[`N${countOfnote}`]=`N${countOfnote}`
     ++countOfnote
 }
 function deleteRow(i) {
