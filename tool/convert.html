@@ -4,30 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>文本格式化转换器</title>
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+    #mainBox
+    {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    h2
+    {
+        text-align: center;
+    }
+    #mainTable
+    {
+        width: 100%;
+    }
+    #noteTable
+    {
+        width: 100%;
+    }
+    td
+    {margin: 5pt;}
+</style>
 
 <body>
-    <h1>
-        文本格式化转换器
-    </h1>
-    <table class="form-group" id="mainTable">
-        <!-- <tr>
-            <td>注释</td>
-            <td>
-                <table id="noteTable">
-                </table>
-                <input id="addNote" type="button" class="btn btn-outline-primary btn-sm" onclick="addNote()" value="添加注释 ➕">
-
-            </td>
-        </tr> -->
-
-    </table>
-
-    <input id="commit" class="btn btn-primary btn-block" type="button" value="提交" title="提交" onclick="commit()">
+    <div id="mainBox">
+        <h2>
+            文本格式化转换器
+        </h2>
+        <table class="form-group" id="mainTable">
+        </table>
+        <input id="commit" class="btn btn-primary btn-block" type="button" value="提交" title="提交" onclick="commit()">
+    </div>
 </body>
-
 </html>
 <script src="main.js"></script>
