@@ -39,6 +39,24 @@ function init() {
         // td.appendChild(copyButton)
         handle.appendChild(copyButton)
     }
+    var operateTr = document.createElement('tr')
+    var operateTd = document.createElement('td')
+    var load = document.createElement('input')
+    load.classList = "btn btn-outline-primary btn-sm"
+    load.type = 'file'
+    load.style = 'width:100%'
+    load.id = 'fileLoad'
+    load.addEventListener('change',function(){loadFile(this.files)})
+    var commit = document.createElement('input')
+    commit.classList = "btn btn-primary btn-block"
+    commit.type = 'button'
+    commit.value = '输出'
+    commit.addEventListener('click',serialize)
+    operateTd.appendChild(load)
+    operateTd.appendChild(commit)
+    operateTr.appendChild(operateTd)
+    mountHandle.appendChild(operateTr) 
+
 }
 function createLabeledTextBox(parent, key, value) {
     var tr = document.createElement('tr')
@@ -63,7 +81,7 @@ function createLabeledTextBox(parent, key, value) {
     parent.appendChild(tr)
     return tr
 }
-function commit() {
+function serialize() {
     var res = {};
     for(var i in Field)
     {
@@ -100,5 +118,39 @@ function copy() {
     var res = document.getElementById("output")
     res.select()
     document.execCommand("Copy")
-    alert("输出已复制到剪切板")
+    // alert("输出已复制到剪切板")
+}
+function loadFile(files)
+{
+    if(files.length)
+    {
+        var file = files[0];
+        var reader = new FileReader();
+        if(/application\/json/ .test(file.type))
+        {
+            reader.readAsText(file)
+            reader.onload = function()
+            {
+                loadJson(this.result)
+            }
+        }
+    }
+}
+function loadJson(src)
+{
+    // alert(src)
+    src = JSON.parse(src)
+    // alert('《'+src.title+'》已经导入')
+    for(var i in Field)
+    {
+        handle = document.getElementById(i)
+        handle.value  = src[i]
+    }
+    for(var i in src.node)
+    {
+        addNote()
+        handle = document.getElementById(i)
+        handle.value = src.node[i]
+    }
+
 }
