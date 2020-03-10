@@ -56,7 +56,8 @@ function init() {
     operateTd.appendChild(commit)
     operateTr.appendChild(operateTd)
     mountHandle.appendChild(operateTr) 
-
+    var recUp = document.getElementById('recentUpdate')
+    recUp.addEventListener('click',recUpdate)
 }
 function createLabeledTextBox(parent, key, value) {
     var tr = document.createElement('tr')
@@ -110,9 +111,18 @@ function addNote() {
     ++countOfnote
 }
 function deleteRow(i) {
-    var parent = document.getElementById('noteTable')
-    delete NoteList[`N${i.id}`]
-    parent.removeChild(i.parentElement.parentElement)
+    try
+    {
+        var parent = document.getElementById('noteTable')
+        console.log(i.id)
+        delete NoteList[`${i.id}`]
+        
+        parent.removeChild(i.parentElement.parentElement)
+    }
+    catch
+    {
+        console.error(`Delete ${i.id} failed.`)
+    }
 }
 function copy() {
     var res = document.getElementById("output")
@@ -146,11 +156,24 @@ function loadJson(src)
         handle = document.getElementById(i)
         handle.value  = src[i]
     }
+    for(var i in NoteList)
+    {
+        console.log(i)
+        deleteRow(document.getElementById(i))
+    }
+    // countOfnote = 0
+    countOfnote = 0
     for(var i in src.node)
     {
         addNote()
         handle = document.getElementById(i)
         handle.value = src.node[i]
     }
-
+}
+function recUpdate()
+{
+    alert('\
+    v0.0.1A 修复“多次上传json文件导致注释未能完全复位”问题\n\
+    v0.0.1 基本功能完成\
+    ')
 }
