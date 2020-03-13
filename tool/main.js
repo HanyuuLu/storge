@@ -173,6 +173,7 @@ function loadJson(src)
 function recUpdate()
 {
     alert('\
+    v0.0.2 嵌入反馈页面\n\
     v0.0.1AA 修复上个版本引入删除注释异常bug(´･ω･`)?\n\
     v0.0.1A 修复“多次上传json文件导致注释未能完全复位”问题\n\
     v0.0.1 基本功能完成\
