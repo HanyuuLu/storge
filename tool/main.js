@@ -145,7 +145,7 @@ function loadFile(files) {
         if (/application\/json/.test(file.type)) {
             reader.readAsText(file)
             reader.onload = function () {
-                laodData(Json.parse(this.result))
+                laodData(JSON.parse(this.result))
             }
         }
     }
@@ -178,6 +178,7 @@ function appendNote() {
 }
 function recUpdate() {
     alert('\
+    v0.0.3A 修复了文件不能导入异常的bug\n\
     v0.0.3 加入批量导入功能\n\
     v0.0.2 嵌入反馈页面\n\
     v0.0.1AA 修复上个版本引入删除注释异常bug(´･ω･`)?\n\
