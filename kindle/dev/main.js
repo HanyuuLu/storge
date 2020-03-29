@@ -33,7 +33,7 @@ function loadMainPage() {
 function test() {
     (document.getElementById('timeBox')).textContent = '20:30'
     document.getElementById('dateBox').textContent = '2020/03/29'
-    document.getElementById('serverStateBox').textContent = '暂时无法连接到服务器'
+    document.getElementById('serverStateBox').textContent = '暂时无法连接到服务器（因为还没做完😂）'
 
     toastsMessage('header', 'message')
     toastsMessage('样例标题','样例吐司消息')
