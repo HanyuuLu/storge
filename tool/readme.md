@@ -2,7 +2,7 @@
 
 ## Json数据格式文本编辑器（开发预览版）
 
-* [进入编辑器](/toolbox/tool/converter.html)
+* [进入编辑器](/toolbox/tool/convert.html)
 
 ## Json数据格式文本导入word模板（正在开发中）
 
