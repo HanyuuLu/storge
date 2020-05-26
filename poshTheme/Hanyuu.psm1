@@ -74,9 +74,9 @@ function Write-Theme {
 
 $sl = $global:ThemeSettings #local settings
 $sl.PromptSymbols.SegmentForwardSymbol = [char]::ConvertFromUtf32(0xE0B0)
-$sl.Colors.UserInfoBackGroundColor = [ConsoleColor]::DarkGray
-$sl.Colors.UserInfoForeGroundColor = [ConsoleColor]::Gray
-$sl.Colors.TimeStampBackGroundColor = [ConsoleColor]::Gray
+$sl.Colors.UserInfoBackGroundColor = [ConsoleColor]::DarkGreen
+$sl.Colors.UserInfoForeGroundColor = [ConsoleColor]::Black
+$sl.Colors.TimeStampBackGroundColor = [ConsoleColor]::Green
 $sl.Colors.TimeStampForeGroundColor = [ConsoleColor]::Black
 $sl.Colors.PromptForegroundColor = [ConsoleColor]::White
 $sl.Colors.PromptBackgroundColor = [ConsoleColor]::Cyan
