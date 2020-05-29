@@ -11,17 +11,16 @@
         width: 100%;
         margin: 0;
         background-color: white;
-        color: black;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
       }
       .timedate_container {
         float: left;
-        border: 2px gray solid;
-        border-radius: 10pt;
         margin: auto;
         position: absolute;
         width: 250pt;
-        height: 180pt;
-        padding: 10pt;
+        height: 210pt;
+        /* padding: 10pt; */
         top: 0;
         bottom: 0;
         left: 0;
@@ -33,18 +32,32 @@
         transform-origin: center;
         text-align: center;
       }
+      .box {
+        border: solid #999999;
+        border-width: 0px 0px 2px 0px;
+        border-radius: 10pt;
+        padding-top: 8pt;
+        padding-bottom: 8pt;
+      }
+
+      #date,
+      #emoji {
+        color: #999999;
+      }
+
       #time {
-        font-size: 60pt;
-        padding-top: 16pt;
+        font-size: 88pt;
       }
 
       #date {
-        padding-top: 16pt;
+        text-align: left;
+        padding-left: 10pt;
         font-size: 24pt;
       }
 
-      .emoji {
-        padding-top: 16pt;
+      #emoji {
+        text-align: right;
+        padding-right: 10pt;
         font-size: 16pt;
       }
     </style>
@@ -52,9 +65,9 @@
 
   <body>
     <div class="timedate_container" onclick="update()">
-      <div class="timedate" id="date">获取日期失败</div>
-      <div class="timedate" id="time">获取时间失败</div>
-      <div class="emoji" id="emoji" onclick="randomEmoji()">○ △ ○</div>
+      <div class="box" id="date">获取日期失败</div>
+      <div class="box" id="time">获取时间失败</div>
+      <div class="box" id="emoji" onclick="randomEmoji()">○ △ ○</div>
     </div>
 
     <script>
@@ -83,14 +96,14 @@
         date.setMinutes(date.getMinutes() + utc8DiffMinutes);
 
         var timeString =
-          twoWidth(date.getHours()) + " : " + twoWidth(date.getMinutes());
+          twoWidth(date.getHours()) + ":" + twoWidth(date.getMinutes());
         var dateString =
           date.getFullYear() +
-          " / " +
+          "/" +
           twoWidth(date.getMonth() + 1) +
-          " / " +
+          "/" +
           twoWidth(date.getDate()) +
-          "  " +
+          " " +
           weekList[date.getDay()];
 
         var weekString = weekList[date.getDay()];
@@ -110,8 +123,10 @@
           emoji = "中午好";
         } else if (hour < 18) {
           emoji = "下午好";
-        } else {
+        } else if (hour < 23) {
           emoji = "晚上好";
+        } else {
+          emoji = "夜深了，注意休息";
         }
         document.getElementById("emoji").innerHTML =
           emoji + emojiList[Math.floor(Math.random() * emojiList.length)];
