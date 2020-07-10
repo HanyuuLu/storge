@@ -12,10 +12,10 @@
    <!-- bean definitions go here -->
 
    <!-- Definition for student bean -->
-   <bean id="student" class="com.tutorialspoint.Student">
+   <bean id="student" class="com.hanyuu.test.Student">
       <property name="name"  value="Zara" />
 
       <!-- try without passing age and check the result -->
-      <!-- property name="age"  value="11"-->
+      <property name="age"  value="11"/>
    </bean>
 </beans>

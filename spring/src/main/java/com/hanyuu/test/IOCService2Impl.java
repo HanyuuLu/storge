@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 // 使用注解方式注入
-@Service(value = "ioc2")
+// @Service(value = "ioc2")
 public class IOCService2Impl implements IOCService {
 
     @Autowired
