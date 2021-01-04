@@ -1,3 +1,0 @@
-FROM nginx
-RUN echo 'Hanyuu nginx docker demo' > /usr/share/nginx/html/index.html
-

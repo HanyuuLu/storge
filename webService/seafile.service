@@ -1,9 +1,0 @@
-[Unit]
-Description=seafile file storge auto launcher
-
-[Service]
-Type=forking
-ExecStart=/cloudStorge/launch.sh
-
-[Install]
-WantedBy=multi-user.target
