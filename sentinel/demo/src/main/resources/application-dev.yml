@@ -1,0 +1,7 @@
+logging:
+  level:
+    root: INFO
+    web: ERROR
+    com:
+      github: DEBUG
+  file: log.log
